@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.hpro.dto.UserDTO" alias="userDTO"/>
+		<typeAlias type="com.hpro.dto.LectureEvaluationDTO" alias="evaluationDTO"></typeAlias>
+		<typeAlias type="com.hpro.dto.BoardDTO" alias="boardDTO"></typeAlias>
+		<typeAlias type="com.hpro.dto.ReportDTO" alias="reportDTO"></typeAlias>
+		<typeAlias type="com.hpro.dto.ReplyDTO" alias="replyDTO"></typeAlias>
+	</typeAliases>
+</configuration>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userMapper">
+	
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="userDTO">
+		insert into user(userID, userPassword, userName, userDepartment, userEmail) values(#{userID},#{userPassword},#{userName},#{userDepartment},#{userEmail});
+	</insert>
+	
+	<!-- 회원가입 : 아이디 중복 확인 -->
+	<select id="idcheck" resultType="int" parameterType="String">
+		select count(*) from user where userID=#{userID};
+	</select>
+	
+	<!-- 로그인, 회원정보 가져오기 -->
+	<select id="info" resultType="userDTO">
+		select * from user where userID=#{userID};
+	</select>
+	
+	<!-- 아이디찾기 -->
+	<select id="idfind" resultType="userDTO">
+		select userID from user where userName=#{userName} and userEmail=#{userEmail};
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="pwfind" resultType="userDTO">
+		select userPassword from user where userID=#{userID} and userEmail=#{userEmail};
+	</select>
+	
+	<!-- 비밀번호 확인 -->
+	<select id="pwchk" resultType="int">
+		select count(*) from user where userID=#{userID} and userPassword=#{userPassword};
+	</select>
+	
+	<!-- 회원정보 수정  -->
+	<update id="update" parameterType="userDTO">
+		update user set userPassword=#{userPassword}, userName=#{userName}, userDepartment=#{userDepartment}, userEmail=#{userEmail} where userID=#{userID};
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="delete" parameterType="userDTO">
+		delete from user where userID=#{userID} and userPassword=#{userPassword};
+	</delete>
+	
+	<!-- 회원 수 -->
+	<select id="count" resultType="int">
+		select count(*) from user;
+	</select>
+	
+	<!-- 전체 회원 목록 : rownum 적용 -->
+	<select id="userAdmin" resultType="userDTO">
+		SELECT * FROM(
+    	 SELECT @ROWNUM := @ROWNUM +1 AS ROWNUM, u.*
+    	 FROM user u, (SELECT @ROWNUM := 0) TMP
+    	 ORDER BY userRegdate asc) SUB
+    	ORDER BY SUB.ROWNUM ASC LIMIT #{startList}, #{listSize}
+	</select>
+</mapper>

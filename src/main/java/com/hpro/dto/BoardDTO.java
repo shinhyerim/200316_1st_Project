@@ -11,12 +11,6 @@ public class BoardDTO {
 	private int hit;
 	private int rownum;
 	
-	public int getRownum() {
-		return rownum;
-	}
-	public void setRownum(int rownum) {
-		this.rownum = rownum;
-	}
 	public int getBoardID() {
 		return boardID;
 	}
@@ -52,5 +46,12 @@ public class BoardDTO {
 	}
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+	
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 }

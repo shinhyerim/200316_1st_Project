@@ -1,5 +1,7 @@
 package com.hpro.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -61,14 +63,19 @@ public class BoardController {
 	// 게시글 상세내용 조회
 	@RequestMapping(value="boardView.le", method=RequestMethod.GET)
 	public String view(int boardID, Model model, @ModelAttribute("search")Search search) throws Exception {
+		
+		// 게시글 상세 내용 불러오기
 		BoardDTO boardDTO = boardService.view(boardID);
 		
+		// 조회 수 증가
 		boardService.hit(boardID);
 		
 		model.addAttribute("boardDTO", boardDTO);
 		model.addAttribute("search", search);
 		
-		model.addAttribute("replyDTO", new ReplyDTO());
+		// 댓글 목록
+		List<ReplyDTO> replyList = boardService.replyList(boardID);
+		model.addAttribute("replyList", replyList);
 		
 		return "board/boardView";
 	}
@@ -133,4 +140,5 @@ public class BoardController {
 		model.addAttribute("list", boardService.getBoardList(search));
 		return "admin/boardAdmin";
 	}
+	
 }

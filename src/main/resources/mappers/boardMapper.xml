@@ -32,7 +32,7 @@
 				AND USERID like CONCAT('%', #{keyword}, '%')
 			</if>	
 		</trim>
-		ORDER BY SUB.ROWNUM asc limit #{startList}, #{listSize}
+		ORDER BY SUB.ROWNUM ASC LIMIT #{startList}, #{listSize}
 	</select>
 	
 	<!-- 게시글 개수: 검색을 위해 MyBatis의 동적SQL인 <trim>,<if> 사용 -->

@@ -6,7 +6,7 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="resources/js/bootstrap.bundle.js"></script>
-<script>
+<script type="text/javascript">
 function acceptFunction(){
 	$.ajax({
 		type: 'POST',

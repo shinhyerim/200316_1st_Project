@@ -10,9 +10,9 @@
 - 2020.03.16.~2020.04.08.
 
 #### 개발 환경
-- JavaScript, JQuery, Ajax
-- JAVA, JSP, MySQL
-- Spring Framework, MyBatis, Bootstrap
+- JavaScript·JQuery·Ajax
+- JAVA·JSP·MySQL
+- Spring Framework·MyBatis·Bootstrap
 
 ##### =============================================== 
 ##### 2020. 04. 16. 수정
@@ -20,3 +20,7 @@
 
 ##### 2020. 04. 21. 수정
 - index의 blog추가 profile, portfolio의 문구 수정
+
+##### ===============================================
+
+- 프로젝트 주제는 동빈나님의 JSP 강의평가 웹 사이트 만들기를 참고하였습니다.

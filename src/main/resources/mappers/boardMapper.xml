@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+
+	<!-- 게시판 글 작성 -->
+	<insert id="write" parameterType="boardDTO">
+		insert into board(userID,boardTitle,boardContent,boardRegdate,hit) 
+		values(#{userID},#{boardTitle},#{boardContent},now(),0)
+	</insert>
+
+	<!-- 게시글 상세 내용 -->
+	<select id="view" resultType="boardDTO" parameterType="int">
+		select * from board where boardID = #{boardID}
+	</select>
+	
+	<!-- 게시글 목록 (사용자,관리자): rownum 적용, 검색을 위해 MyBatis의 동적SQL인 <trim>,<if> 사용 -->
+	<select id="list" resultType="boardDTO">
+		SELECT * FROM(
+			SELECT @ROWNUM := @ROWNUM + 1 AS rownum, b.*
+			FROM board b, (SELECT @ROWNUM := 0) TMP
+			ORDER BY boardRegdate desc) SUB
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='title' and keyword != null and keyword != '' ">
+				AND BOARDTITLE like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='content' and keyword != null and keyword != '' ">
+				AND BOARDCONTENT like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='reg_id' and keyword != null and keyword != '' ">
+				AND USERID like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		ORDER BY SUB.ROWNUM ASC LIMIT #{startList}, #{listSize}
+	</select>
+	
+	<!-- 게시글 개수: 검색을 위해 MyBatis의 동적SQL인 <trim>,<if> 사용 -->
+	<select id="count" resultType="int">
+		SELECT COUNT(*) AS listCnt FROM BOARD
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="keyword != null and keyword != '' ">
+				<if test="searchType=='title'">
+					AND BOARDTITLE like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='content'">
+					AND BOARDCONTENT like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='reg_id'">
+					AND USERID like CONCAT('%', #{keyword}, '%')
+				</if>
+	      	</if>
+		</trim>
+	</select>
+	
+	<!-- 게시글 조회수 '1'증가 -->
+	<update id="hit" parameterType="int">
+		update board set hit = hit+1 where boardID=#{boardID}
+	</update>
+	
+	<!-- 게시글 수정 -->
+	<update id="update" parameterType="boardDTO">
+		update board set boardTitle=#{boardTitle}, boardContent=#{boardContent}, boardRegdate=now() where boardID=#{boardID}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from board where boardID=#{boardID}
+	</delete>
+	
+	<!-- 마이페이지 게시글 목록: rownum 적용 -->
+	<select id="boardUser" resultType="boardDTO">
+		SELECT * FROM(
+      		SELECT @ROWNUM := @ROWNUM + 1 AS rownum, b.*
+      		FROM board b, (SELECT @ROWNUM := 0) TMP
+      		ORDER BY boardRegdate asc) SUB
+     	WHERE userID=#{userID} ORDER BY SUB.ROWNUM DESC
+	</select>
+	
+</mapper>

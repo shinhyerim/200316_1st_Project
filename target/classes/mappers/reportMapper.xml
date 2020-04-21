@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reportMapper">
+
+	<!-- 신고글 작성  -->
+	<insert id="report" parameterType="reportDTO">
+		insert into report(userID,reportDivide,reportTitle,reportContent,reportRegdate,reportStatus) values(#{userID},#{reportDivide},#{reportTitle},#{reportContent},now(),1)
+	</insert>
+	
+	<!-- 신고글 삭제 (사용자) -->
+	<update id="updateStatus">
+		update report set reportStatus=3 where reportID=#{reportID}
+	</update>
+	
+	<!-- 신고글 목록 (사용자) -->
+	<select id="reportUser" resultType="reportDTO">
+		select * from report where userID=#{userID} and reportStatus != 3 order by reportRegdate desc
+	</select>
+	
+	<!-- 신고글 목록 (관리자) -->
+	<select id="list" resultType="reportDTO">
+		SELECT * FROM(
+			SELECT @ROWNUM := @ROWNUM + 1 AS rownum, r.*
+			FROM report r, (SELECT @ROWNUM := 0) TMP
+			ORDER BY reportRegdate asc) SUB
+			<trim prefix="WHERE" prefixOverrides="AND|OR">
+				<if test="searchType=='title' and keyword != null and keyword != '' ">
+					AND REPORTTITLE like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='content' and keyword != null and keyword != '' ">
+					AND REPORTCONTENT like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='reg_id' and keyword != null and keyword != '' ">
+					AND USERID like CONCAT('%', #{keyword}, '%')
+				</if>	
+			</trim>
+		ORDER BY SUB.ROWNUM ASC limit #{startList}, #{listSize}
+	</select>
+	
+	<!-- 신고글 개수 -->
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM REPORT
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="keyword != null and keyword != '' ">
+				<if test="searchType=='title'">
+					AND REPORTTITLE like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='content'">
+					AND REPORTCONTENT like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='reg_id'">
+					AND USERID like CONCAT('%', #{keyword}, '%')
+				</if>
+	      	</if>
+		</trim>
+	</select>
+	
+	<!-- 신고글 상세내용 보기 -->
+	<select id = "view" resultType="reportDTO">
+		select * from report where reportID=#{reportID}
+	</select>
+	
+	<!-- 신고글 접수: 0으로 변경 -->
+	<update id="accept">
+		update report set reportStatus=0 where reportID=#{reportID}
+	</update>
+	
+	<!-- 신고글 처리: 2로 변경 -->
+	<update id="success">
+		update report set reportStatus=2 where reportID=#{reportID}
+	</update>
+</mapper>

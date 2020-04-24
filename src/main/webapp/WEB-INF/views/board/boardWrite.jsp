@@ -30,7 +30,7 @@
 				</tr>
 				<tr>
 					<td>글 내용</td>
-					<td><textarea class="form-control" placeholder="내용을 작성해주세요" name="boardContent" maxlength="2048" style="height:350px;" required></textarea></td>
+					<td><textarea class="form-control" placeholder="내용을 작성해주세요" id="boardContent" name="boardContent" maxlength="2048" style="height:350px;" required></textarea></td>
 				</tr>
 			</tbody>
 		</table>
@@ -39,5 +39,7 @@
 </section>
 
 <%@include file ="../common/footer.jsp" %>
+
+
 </body>
 </html>

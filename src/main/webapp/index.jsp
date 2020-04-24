@@ -2,27 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>H's Portfolio</title>
+<!-- Bootstrap core CSS -->
+<link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<!-- Custom fonts for this template -->
+<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
-  <title>H's Portfolio</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom fonts for this template -->
-  <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="resources/css/resume.min.css" rel="stylesheet">
-
+<!-- Custom styles for this template -->
+ <link href="resources/css/resume.min.css" rel="stylesheet">
 </head>
-
 <body id="page-top">
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-block d-lg-none">SHIN HYE RIM</span>
@@ -69,12 +60,9 @@
           <a href="https://github.com/shinhyerim">
             <i class="fab fa-github"></i>
           </a>
-<<<<<<< HEAD
           <a href="https://blog.naver.com/hyerim193">
           	<i class="fas fa-blog"></i>
           </a>
-=======
->>>>>>> 1f032025bd87e44fa37ee3e6ad0e21fd8c2612da
         </div>
       </div>
     </section>
@@ -87,28 +75,17 @@
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3">
           <div class="resume-content">
             <h5 class="mb-2">안녕하세요. 신혜림입니다.</h5>
-<<<<<<< HEAD
             <p>저는 인생에 물음표 보다는 느낌표를 던지는 사람입니다.<br>일을 시작하기 전  '내가 할 수 있을까?'라는 의문문 보다는 '나는 할 수 있어!'라는 긍정문을 던지게 되면<br>저에게 자신감과 용기를 줄 수 있고,
             	이것이 원동력이 되어 목표를 향해 갈 수 있는 열정과 끈기를 주기 때문입니다.<br>저의 이러한 긍정적인 에너지를 많은 사람들과 함께 나누고 싶습니다.</p>
-=======
-            <p>저는 인생에 물음표 보다는 느낌표를 던지는 사람입니다. '내가 할 수 있을까?'라는 의문문 보다는 '나는 할 수 있어!'라는 긍정문을 던지게 되면<br> 일을 시작하기 전 저에게 자신감과 용기를 줄 수 있고,
-            	그것을 원동력삼아 목표를 향해 갈 수 있는 열정과 끈기를 주기 때문입니다.<br>저의 이러한 긍정적인 에너지를 많은 사람들과 함께 나누고 싶습니다.</p>
->>>>>>> 1f032025bd87e44fa37ee3e6ad0e21fd8c2612da
           </div>
         </div>
 		<hr class="mt-2 mb-2">
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3">
           <div class="resume-content">
             <h5 class="mb-2">학력 및 활동</h5>
-<<<<<<< HEAD
             <p>2019.10.~2020.04. 중앙정보처리학원 AI알고리즘을 활용한 응용 SW 개발자 취업과정 (수료) </p>
             <p>2017.04.~2018.08. 국가평생교육진흥원 컴퓨터공학전공 [4.11/4.5]</p>
             <p>2012.03.~2015.02. 한양여자대학교 정보경영과(이공계열) [3.58/4.5]</p>
-=======
-            <p>2019.10.~2020.04. 중앙정보처리학원 AI알고리즘을 활용한 응용 SW 개발자 취업과정 (수료예정) </p>
-            <p>2017.04.~2018.08. 국가평생교육진흥원 컴퓨터공학전공 [4.11/4.5]</p>
-            <p>2012.03.~2015.02. 한양여자대학교 정보경영과 [3.58/4.5]</p>
->>>>>>> 1f032025bd87e44fa37ee3e6ad0e21fd8c2612da
             <p>2009.03.~2012.02. 계산여자고등학교</p>
           </div>
         </div>
@@ -142,24 +119,14 @@
             <h3 class="mb-0">강의평가사이트</h3>
             <div class="text-primary mb-5">2020.03.16.~2020.04.08.</div>
             <h5>"프로젝트 개요"</h5>
-<<<<<<< HEAD
             <p>수강 신청이 다가올때마다 고민하는 학생들을 위해 성적 열람을 위한 강의평가가 아닌 <br>학생들의 솔직한 강의평가를 공유하여 수강신청에 도움을 주고자 했습니다.</p>
-=======
-            <p>수강 신청이 다가올때마다 고민하는 학생들을 위해 성적 열람을 위한 강의평가가 아닌 <br>학생들의 솔직한 강의평가를 공유하여 수강신청에 도움을 주고자 했습니다.<br>
-            <small>(주제는 동빈나님의 JSP 강의평가 웹 사이트 개발하기를 참고하였습니다.)</small></p>
->>>>>>> 1f032025bd87e44fa37ee3e6ad0e21fd8c2612da
             <hr class="mt-2 mb-2">
             <h5>"작업 포인트"</h5>
             <p>1. 수강하고자 하는 강의를 검색하여 해당 강의의 강의평가를 확인할 수 있습니다.<br>2. '추천'기능을 통해 학생들의 많은 추천을 받은 강의를 확인 할 수 있습니다.
                <br>3. 욕설이나 비방목적의 게시글은 '신고하기'기능을 이용하여 신고할 수 있도록 했습니다.</p>
              <hr class="mt-2 mb-2">
-<<<<<<< HEAD
             <h5>"개발 환경"</h5>
             <p>JAVA·JSP·MySQL·JavaScript·JQuery·Ajax<br>SpringFramework·MyBaits·BootStrap</p>
-=======
-            <h5>"개발 기술"</h5>
-            <p>JAVA·JSP·JavaScript·HTML5·CSS3·Ajax<br>SpringFramework·MySQL·MyBaits</p>
->>>>>>> 1f032025bd87e44fa37ee3e6ad0e21fd8c2612da
 
           </div>
       	  <div class="resume-date text-primary text-md-right">

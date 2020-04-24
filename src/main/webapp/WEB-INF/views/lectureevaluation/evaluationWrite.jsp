@@ -34,11 +34,11 @@
 		<!-- 강의평가 작성 폼  -->
 		<div class="form-group">
 			<label>강의명</label>
-			<input type="text" name="lectureName" class="form-control" maxlength="20">
+			<input type="text" name="lectureName" class="form-control" maxlength="20" required>
 		</div>
 		<div class="form-group">
 			<label>교수명</label>
-			<input type="text" name="professorName" class="form-control" maxlength="20">
+			<input type="text" name="professorName" class="form-control" maxlength="20" required>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-sm-4">
@@ -68,11 +68,11 @@
 		</div>
 		<div class="form-group">
 			<label>제목</label>
-			<input type="text" name="evaluationTitle" class="form-control" maxlength="30">
+			<input type="text" name="evaluationTitle" class="form-control" maxlength="30" required>
 		</div>
 		<div class="form-group">
 			<label>내용</label>
-			<textarea name="evaluationContent" class="form-control" maxlength="2048" style="height:180px;"></textarea>
+			<textarea name="evaluationContent" class="form-control" maxlength="2048" style="height:180px;" required></textarea>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-sm-3">

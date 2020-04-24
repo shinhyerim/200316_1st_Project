@@ -48,11 +48,10 @@ public class ReportController {
 			@RequestParam(required=false, defaultValue="1")int page,
 			@RequestParam(required=false, defaultValue="1")int range,
 			@RequestParam(required=false, defaultValue="title")String searchType,
-			@RequestParam(required=false)String keyword,
-			@ModelAttribute("search")Search search) throws Exception{
+			@RequestParam(required=false)String keyword) throws Exception{
 		
 		// 검색
-		model.addAttribute("search", search);
+		Search search = new Search();
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
 		
@@ -75,10 +74,11 @@ public class ReportController {
 		return "admin/reportView";
 	}
 	
+	// 접수 및 처리 시 java.lang.IllegalStateException이 발생해서 int를 Integer로 변경해줌
 	// 신고글 접수
 	@ResponseBody
 	@RequestMapping(value="reportAccept.le", method=RequestMethod.POST)
-	public int reportAccept(@RequestParam(value="reportID", required=false)Integer reportID) throws Exception {
+	public int reportAccept(@RequestParam(value="reportID")Integer reportID) throws Exception {
 		System.out.println("ACCEPT REPORT ID: "+reportID);
 		int acceptResult = reportService.accept(reportID);
 		System.out.println("ACCEPT RESULT: "+acceptResult);
@@ -88,7 +88,7 @@ public class ReportController {
 	// 신고글 처리
 	@ResponseBody
 	@RequestMapping(value="reportSuccess.le", method=RequestMethod.POST)
-	public int reportSuccess(@RequestParam(value="reportID", required=false)Integer reportID) throws Exception{
+	public int reportSuccess(@RequestParam(value="reportID")Integer reportID) throws Exception{
 		System.out.println("SUCCESS REPORT ID: "+reportID);
 		int successResult = reportService.success(reportID);
 		System.out.println("SUCCESS RESULT: "+successResult);

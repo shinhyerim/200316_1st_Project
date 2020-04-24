@@ -16,6 +16,8 @@
 </c:if>
 
 <script type="text/javascript">
+
+// 비밀번호 일치 여부 검사
 function passwordCheckFunction(){
 	var p1 = $('#userPassword').val();		
 	var p2 = $('#userPassword2').val();
@@ -26,6 +28,7 @@ function passwordCheckFunction(){
 	}
 }
 
+// 회원탈퇴
 function userDeleteFunction(){
 	var dchk = confirm('정말로 탈퇴하시겠습니까?');
 	if(dchk == true){

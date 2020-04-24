@@ -13,6 +13,7 @@
 <%@include file ="../common/header.jsp" %>
 	
 <section class="container">
+	<!-- 관리자는 강의평가 상세 내역을 확인만 할 수 있을 뿐 수정은 할 수 없기 때문에 readonly 설정  -->
 	<form class="form-group mt-5 mb-5">
 	<div class="text-left mt-5">
 			<h5 class="center">No.&nbsp;${adminEvaluationContent.evaluationID}</h5>

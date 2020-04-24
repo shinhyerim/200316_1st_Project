@@ -19,12 +19,13 @@
 				<div class="row"  style="height:360px;">
 				<!-- 이미지 출력 -->
 				<div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
-				<!-- 비밀번호 입력란 출력 -->
+				<!-- 비밀번호 입력폼 관련 영역  -->
 				<div class="col-lg-6 p-5">
                 	<div class="p-5">
 					<div class="text-center">
 						<p>본인 확인을 위해 <br> 비밀번호를 입력해주세요.</p>
 					</div>
+					<!-- 비밀번호 입력폼 -->
 					<form method="post" action="userDeleteAction.le" style="padding-bottom: 20px;">
 						<input type="hidden" name="userID" id="userID" value="${userInfo.userID}">
 						<div class="form-group">

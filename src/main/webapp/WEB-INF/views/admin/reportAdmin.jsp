@@ -11,6 +11,7 @@
 <title>Admin - Report List</title>
 </head>
 <body>
+
 <%@include file ="../common/header.jsp" %>
 	
 <section class="container">
@@ -28,22 +29,24 @@
 	<!-- 게시글 목록  -->
 	<div class="form-group mt-4">
 		<div class="row">
-			<table class="table" style="text-align:center; border:1px solid #dddddd">
-				<thead>
-					<tr>
-						<th style="background-color: #eeeeee; text-align:center;">번호</th>
-						<th style="background-color: #eeeeee; text-align:center;">구분</th>
-						<th style="background-color: #eeeeee; text-align:center;">제목</th>
-						<th style="background-color: #eeeeee; text-align:center;">작성자</th>
-						<th style="background-color: #eeeeee; text-align:center;">작성일자</th>
-						<th style="background-color: #eeeeee; text-align:center;">비고</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:if test="${adminReportList == null}">
-						<p>접수된 신고내역이 없습니다.</p>
-					</c:if>
-					<c:if test="${adminReportList != null}">
+			<!-- 사용자가 작성한 신고내역이 존재하지 않는 경우, 아래 문구 출력  -->
+			<c:if test="${adminReportList == null}">
+				<p>접수된 신고내역이 없습니다.</p>
+			</c:if>
+			<!-- 사용자가 작성한 신고내역이 존재하는 경우, table형식으로 신고내역 목록 출력  -->
+			<c:if test="${adminReportList != null}">
+				<table class="table" style="text-align:center; border:1px solid #dddddd">
+					<thead>
+						<tr>
+							<th style="background-color: #eeeeee; text-align:center;">번호</th>
+							<th style="background-color: #eeeeee; text-align:center;">구분</th>
+							<th style="background-color: #eeeeee; text-align:center;">제목</th>
+							<th style="background-color: #eeeeee; text-align:center;">작성자</th>
+							<th style="background-color: #eeeeee; text-align:center;">작성일자</th>
+							<th style="background-color: #eeeeee; text-align:center;">비고</th>
+						</tr>
+					</thead>
+					<tbody>
 						<c:forEach items="${adminReportList}" var="adminReportList">
 							<tr>
 								<td>${adminReportList.rownum}</td>
@@ -51,6 +54,8 @@
 								<td><a href="reportView.le?reportID=${adminReportList.reportID}" style="text-decoration:none;">${adminReportList.reportTitle}</a></td>
 								<td>${adminReportList.userID}</td>
 								<td>${adminReportList.reportRegdate}</td>
+								
+								<!-- 관리자의 처리에 따라 신고내역의 상태가 변경되며, 사용자가 삭제하더라도 사용자 화면에만 보이지 않을 뿐 관리자 페이지에서는 확인이 가능 -->
 								<c:if test="${adminReportList.reportStatus == 0}">
 									<td><b style="color:red;">접수 완료</b></td>
 								</c:if>
@@ -65,11 +70,12 @@
 								</c:if>									
 							</tr> 
 						</c:forEach>
-					</c:if>
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			</c:if>
 		</div>
 	</div>
+	
 	<!-- Pagination -->
 	<%@include file="../common/pagination.jsp" %>
 </section>

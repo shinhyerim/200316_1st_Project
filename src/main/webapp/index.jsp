@@ -30,10 +30,10 @@
           <a class="nav-link js-scroll-trigger" href="#about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#experience">Profile</a>
+          <a class="nav-link js-scroll-trigger" href="#profile">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#education">Portfolio</a>
+          <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
@@ -69,7 +69,7 @@
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="profile">
       <div class="w-100">
         <h2 class="mb-3">PROFILE</h2>
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3">
@@ -111,7 +111,7 @@
 
     <hr class="m-0">
     
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="portfolio">
       <div class="w-100">
              <h2 class="mb-5">PORTFOLIO</h2>
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
@@ -122,7 +122,7 @@
             <p>수강 신청이 다가올때마다 고민하는 학생들을 위해 성적 열람을 위한 강의평가가 아닌 <br>학생들의 솔직한 강의평가를 공유하여 수강신청에 도움을 주고자 했습니다.</p>
             <hr class="mt-2 mb-2">
             <h5>"작업 포인트"</h5>
-            <p>1. 수강하고자 하는 강의를 검색하여 해당 강의의 강의평가를 확인할 수 있습니다.<br>2. '추천'기능을 통해 학생들의 많은 추천을 받은 강의를 확인 할 수 있습니다.
+            <p>1. 수강하고자 하는 강의를 검색하여 해당 강의의 강의평가를 확인할 수 있습니다.<br>2. '추천'기능을 통해 공감가는 강의평가를 추천할 수 있습니다.
                <br>3. 욕설이나 비방목적의 게시글은 '신고하기'기능을 이용하여 신고할 수 있도록 했습니다.</p>
              <hr class="mt-2 mb-2">
             <h5>"개발 환경"</h5>
@@ -182,16 +182,16 @@
 	        		<p style="text-align:center;">JSP</p>
 	        	</li>
 	        	<li class="list-inline-item mt-3" style="padding-right:2rem;">
-	        		<img src="resources/img/framework.png">
-	        		<p style="text-align:center;">Spring</p>
-	        	</li>
-	        	<li class="list-inline-item mt-3" style="padding-right:2rem;">
 	        		<img src="resources/img/mysql.png">
 	        		<p style="text-align:center;">MySQL</p>
 	        	</li>
 	        	<li class="list-inline-item mt-3" style="padding-right:2rem;">
 	        		<img src="resources/img/server.png">
 	        		<p style="text-align:center;">Oracle</p>
+	        	</li>
+	        	<li class="list-inline-item mt-3" style="padding-right:2rem;">
+	        		<img src="resources/img/framework.png">
+	        		<p style="text-align:center;">Spring Framework</p>
 	        	</li>
 	        	<li class="list-inline-item mt-3" style="padding-right:2rem;">
 	        		<img src="resources/img/code.png">

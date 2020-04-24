@@ -17,18 +17,22 @@
     	<div class="card-body p-0">
 		<!-- Nested Row within Card Body -->
 			<div class="row"  style="height:360px;">
+				<!-- 이미지 출력  -->
 				<div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+				<!-- 아이디 찾기 관련 영역 -->
 				<div class="col-lg-6 p-5">
 				<div class="p-5">
 				<div class="text-center">
 					<h3 class="h4 text-gray-900 mb-2">아이디 확인</h3>
 				</div>
+				<!-- 가입된 정보가 존재하고 입력한 정보(이름,이메일)가 일치하는 경우 -->
 				<c:if test="${userDTO != null}">
 					<div class="text-center">
 						<p>귀하의 아이디는 <b>${userDTO.userID}</b> 입니다.</p>
 					</div>
                   	<button type="button" class="btn btn-primary btn-user btn-block" onClick="location.href='userLogin.le';">로그인</button>
                 </c:if>
+                <!-- 가입된 정보가 존재하지 않거나 입력한 정보(이름,이메일)가 일치하지 않을 경우 -->
 				<c:if test="${userDTO == null }">
 					<script>
 						alert("성명과 이메일을 다시 확인해주세요.");

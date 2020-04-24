@@ -7,6 +7,8 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="resources/js/bootstrap.bundle.js"></script>
 <script type="text/javascript">
+
+// '사용자 신고 접수' → '접수 완료' 상태 변경 처리
 function acceptFunction(){
 	$.ajax({
 		type: 'POST',
@@ -16,7 +18,7 @@ function acceptFunction(){
 			console.log(acceptResult);
 			if(acceptResult == 1){
 				alert('신고 접수 처리 성공');
-				location.href='reportAdmin.le';
+				location.href='reportView.le?reportID='+${reportContent.reportID};
 			}else{
 				alert('신고 접수 처리 실패');
 				history.go(-1);
@@ -26,6 +28,7 @@ function acceptFunction(){
 	return
 }
 
+// '접수 완료' → '처리 완료' 상태 변경 처리
 function successFunction(){
 	$.ajax({
 		type: 'POST',
@@ -35,7 +38,7 @@ function successFunction(){
 			console.log(successResult);
 			if(successResult == 1){
 				alert('신고 처리 완료');
-				location.href='reportAdmin.le';
+				location.href='reportView.le?reportID='+${reportContent.reportID};
 			}else{
 				alert('신고 처리 실패');
 				history.go(-1);

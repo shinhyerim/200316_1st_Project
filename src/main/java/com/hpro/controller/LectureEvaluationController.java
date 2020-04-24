@@ -18,12 +18,13 @@ public class LectureEvaluationController {
 	@Inject
 	LectureEvaluationService evaluationService;
 	
-	// 강의평가 등록 화면 및 처리
+	// 강의평가 등록 폼
 	@RequestMapping(value="evaluationWrite.le")
 	public String writeForm() {
 		return "lectureevaluation/evaluationWrite";
 	}
 	
+	// 강의평가 등록 처리
 	@RequestMapping(value="evaluationWriteAction.le", method=RequestMethod.POST)
 	public String writeAction(@ModelAttribute LectureEvaluationDTO evaluationDTO, Model model) throws Exception {
 		int result = evaluationService.insert(evaluationDTO);
@@ -37,11 +38,10 @@ public class LectureEvaluationController {
 			@RequestParam(required=false, defaultValue="1")int page,
 			@RequestParam(required=false, defaultValue="1")int range,
 			@RequestParam(required=false)String searchType,
-			@RequestParam(required=false)String keyword,
-			@ModelAttribute("search")Search search) throws Exception{
+			@RequestParam(required=false)String keyword) throws Exception{
 		
 		// 검색
-		model.addAttribute("search", search);
+		Search search = new Search();
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
 		
@@ -52,6 +52,7 @@ public class LectureEvaluationController {
 
 		model.addAttribute("pagination", search);
 		model.addAttribute("list", evaluationService.list(search));
+		
 		return "home";
 	}
 	
@@ -62,7 +63,7 @@ public class LectureEvaluationController {
 		return "lectureevaluation/evaluationLikeAction";
 	}
 	
-	// 강의평가 수정 화면 및 처리
+	// 강의평가 수정폼
 	@RequestMapping(value="update.le",method=RequestMethod.GET)
 	public String update(int evaluationID, Model model) throws Exception{
 		LectureEvaluationDTO content = evaluationService.view(evaluationID);
@@ -70,6 +71,7 @@ public class LectureEvaluationController {
 		return "lectureevaluation/evaluationUpdate";
 	}
 	
+	// 강의평가 수정 처리
 	@RequestMapping(value="updateAction.le",method=RequestMethod.POST)
 	public String updateAction(@ModelAttribute LectureEvaluationDTO evaluationDTO, Model model) throws Exception{
 		int result = evaluationService.update(evaluationDTO);
@@ -116,6 +118,7 @@ public class LectureEvaluationController {
 	
 		search.pageInfo(page, range, listCnt);
 		
+		// 검색 결과 확인을 위해 출력
 		System.out.println("검색결과: "+evaluationService.list(search));
 		
 		model.addAttribute("pagination", search);

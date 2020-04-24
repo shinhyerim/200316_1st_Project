@@ -16,16 +16,18 @@
 <%@include file ="../common/header.jsp" %>
 	
 <section class="container mb-5">
-	<!-- 게시글 목록  -->
+	<!-- 강의평가 작성 내역  -->
 	<div class="form-group mt-5 mb-5">
 		<div class="text-center mt-5 mb-3">
 			<h5>${sessionScope.userInfo.userID} 님의 강의평가 작성내역</h5>
 		</div>
+		<!-- 등록된 강의평가가 존재하지 않는 경우 아래 문구 출력  -->
 		<c:if test="${userEvaluationList == null}">
 			<div class="form-group mt-5">
 				<p>등록된 강의평가가 없습니다. 강의평가를 등록해주세요.</p>
 			</div>
 		</c:if>
+		<!-- 등록된 강의평가가 존재하는 경우 card형식으로 출력  -->
 		<c:if test="${userEvaluationList != null}">
 			<c:forEach  items="${userEvaluationList}" var="userEvaluationList">
 				<div class="card bg-light mt-3 mb-3">

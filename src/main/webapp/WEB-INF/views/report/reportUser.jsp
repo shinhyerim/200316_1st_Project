@@ -19,11 +19,13 @@
 			<h5>${sessionScope.userInfo.userID} 님의 신고내역</h5>
 		</div>
 		<!-- 신고내역 목록  -->
+		<!-- 작성된 신고내역이 존재하지 않는 경우 아래 문구 출력 -->
 		<c:if test="${userReportList == null}">
 			<div class="form-group mt-5">
 				<p>작성된 신고내역이 없습니다.</p>
 			</div>
 		</c:if>
+		<!-- 작성된 신고내역이 존재하는 경우 card형식으로 출력  -->
 		<c:if test="${userReportList != null}">
 			<c:forEach  items="${userReportList}" var="userReportList">
 				<div class="card bg-light mt-3 mb-3">
@@ -34,6 +36,7 @@
 						<h5 class="card-title">${userReportList.reportTitle}&nbsp;</h5>
 						<p class="card-text">${userReportList.reportContent}</p>
 						<p> 신고일자 : <fmt:formatDate value="${userReportList.reportRegdate}" type="date" dateStyle="full" /></p>
+						<!-- 관리자의 처리 상태에 따라 다르게 출력  -->
 						<c:if test="${userReportList.reportStatus == 1}">
 							<p> 처리상태 : <b style="color:red;">신고 접수</b>
 						</c:if>

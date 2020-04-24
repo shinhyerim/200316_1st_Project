@@ -1,5 +1,5 @@
 /**
- * 
+ * 검색 및 페이징 처리
  */
 
 // 검색창
@@ -12,7 +12,7 @@ $(document).on('click', '#btnSearch', function(e){
 	location.href = url;
 });
 
-// ------------------  Pagination 처리 -------------------------
+// ------------------  페이징 처리 -------------------------
 
 // 이전 버튼 이벤트
 function fn_prev(page, range, rangeSize, searchType, keyword){

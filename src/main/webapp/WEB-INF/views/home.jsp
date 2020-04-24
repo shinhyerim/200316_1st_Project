@@ -11,14 +11,17 @@
 <title>Lecture Evaluation List</title>
 </head>
 <body>
+
 <%@include file ="common/header.jsp" %>
+
 <section class="container">
-	<!-- 검색창 -->
+	<!-- 공유된 세션이 존재하지 않을 때는 아래 문구가 출력되도록 함  -->
 	<c:if test="${sessionScope.userInfo == null}">
 	<div class="text-left mt-3 pl-1">
-		<small style="color:red;">로그인을 하셔야 강의평가 및 추천이 가능합니다.</small>
+		<small style="color:red;">강의평가 등록 및 추천은 로그인 후 이용가능합니다.</small>
 	</div>
 	</c:if>
+	<!-- 강의평가 검색창  -->
 	<div class="form-inline mt-3">
 		<select class="form-control mx-1 mt-2" name="searchType" id="searchType">
 			<option value=""<c:out value="${pagination.searchType == null ? 'selected' : '' }"/>>전체</option>
@@ -26,18 +29,21 @@
 			<option value="professorName"<c:out value="${pagination.searchType eq 'professorName' ? 'selected' : '' }"/>>교수명</option>
 		</select>
 		<input type="text" class="form-control mx-1 mt-2" name="keyword" id="keyword" placeholder="내용을 입력하세요." value="${pagination.keyword}">
-		<button class="btn btn-primary mx-1 mt-2" name="btnSearch" id="btnSearch">검색</button>
+		<button class="btn btn-warning mx-1 mt-2" name="btnSearch" id="btnSearch">검색</button>
+		<!-- 공유된 세션이 존재할 때만 등록하기, 신고하기 버튼이 생성됨 -->
 		<c:if test="${sessionScope.userInfo != null }">
 			<a class="btn btn-primary mx-1 mt-2" href="evaluationWrite.le">등록하기</a>
 			<a class="btn btn-danger mx-1 mt-2" data-toggle="modal" href="#reportModal">신고하기</a>
 		</c:if>	
 	</div>
 	<!-- 강의평가 출력부분  -->
+	<!-- 등록된 강의평가가 없을 때 아래 문구 출력 -->
 	<c:if test="${list == null}">
 		<div class="form-group mt-5">
 			<p>등록된 강의평가가 없습니다. '등록하기'버튼을 눌러 강의평가를 등록해주세요.</p>
 		</div>
 	</c:if>
+	<!-- 등록된 강의평가가 있을 때 강의평가 내용을 card형식으로 출력 -->
 	<c:if test="${list != null}">
 		<c:forEach  items="${list}" var="list">
 			<div class="card bg-light mt-3 mb-3">
@@ -58,9 +64,11 @@
 							&nbsp;&nbsp;<span style="color:green;">[추천 : ${list.likeCount}]</span>
 						</div>
 						<div class="col-3 text-right">
+						<!-- 공유된 세션이 존재할 때만 '추천'이 가능하도록 함  -->
 						<c:if test="${sessionScope.userInfo != null}">
 							<a class="btn btn-warning"onClick="return confirm('추천하시겠습니까?')" href="like.le?evaluationID=${list.evaluationID}">추천</a>
 						</c:if>
+						<!-- 공유된 세션의 userID와 강의평가의 userID가 일치하는 경우에만 수정,삭제 버튼이 생성됨 -->
 						<c:if test="${sessionScope.userInfo.userID eq list.userID}">
 							<a class="btn btn-primary" href="update.le?evaluationID=${list.evaluationID}">수정</a>
 							<a class="btn btn-danger" onClick="return confirm('삭제하시겠습니까?')" href="delete.le?evaluationID=${list.evaluationID}">삭제</a>
@@ -71,9 +79,12 @@
 			</div>
 		</c:forEach>
 	</c:if>
+	
+	<!-- 페이징처리 -->
 	<%@include file ="common/pagination.jsp" %>
 </section>
-<!-- 신고하기 : modal 양식  -->
+
+<!-- 신고하기는 modal창을 이용  -->
 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -83,6 +94,7 @@
 			</div>
 			<div class="modal-body">
 				<form action="reportWrite.le" method="post">
+					<!-- userID는 현재 공유된 세션의 id값을 hidden으로 넘겨줌 -->
 					<input type="hidden" name="userID" value="${sessionScope.userInfo.userID}">
 					<div class="form-group">
 						<label>구분</label>
@@ -108,6 +120,8 @@
 		</div>
 	</div>
 </div>
+
 <%@include file ="common/footer.jsp" %>
+
 </body>
 </html>

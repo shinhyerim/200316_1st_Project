@@ -2,7 +2,6 @@ package com.hpro.dao;
 
 import java.util.List;
 
-import com.hpro.commons.Pagination;
 import com.hpro.commons.Search;
 import com.hpro.dto.LectureEvaluationDTO;
 

@@ -7,7 +7,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<title>User Info</title>
+<title>User Info - 회원정보관리</title>
 </head>
 <body class="bg-gradient-warning">
 <section class="container mt-5">
@@ -23,6 +23,7 @@
 						<div class="text-center">
 							<p>본인 확인을 위해 비밀번호를 입력해주세요.</p>
 						</div>
+						<!-- 비밀번호 입력 영역  -->
 						<form method="post" action="userInfoChk.le" style="padding-bottom: 20px;">
 							<input type="hidden" name="userID" id="userID" value="${userInfo.userID}">
 							<div class="form-group">

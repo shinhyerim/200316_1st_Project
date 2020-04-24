@@ -4,16 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Board List</title>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="resources/js/bootstrap.bundle.js"></script>
-<link rel="stylesheet" href="resources/css/bootstrap.css">
-<link rel="stylesheet" href="resources/css/custom.css">
 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="resources/css/bootstrap.css">
+<title>Board List</title>
 <script>
-//검색
+// 검색
 $(document).on('click', '#btnSearch', function(e){
 	e.preventDefault();
 	var url = "boardAdmin.le";
@@ -22,10 +20,10 @@ $(document).on('click', '#btnSearch', function(e){
 	
 	location.href = url;
 });	
-// ------------------  Pagination 처리 -------------------------
+// ------------------  페이징 처리 -------------------------
 // 이전 버튼 이벤트
 function fn_prev(page, range, rangeSize, searchType, keyword){
-	var page = ((range - 2) * rangeSize) + 1;
+	var page = ((range - 2) * rangeSize) + 1; // 무조건 이전 페이지 범위의 가장 앞 페이지로 이동하게 하기 위해
 	var range = range - 1;	
 	var url = "boardAdmin.le";
 		url = url + "?page=" + page;
@@ -49,7 +47,7 @@ function fn_pagination(page, range, rangeSize, searchType, keyword){
 	
 // 다음 버튼 이벤트
 function fn_next(page, range, rangeSize, searchType, keyword){
-	var page = parseInt((range * rangeSize)) + 1;
+	var page = parseInt((range * rangeSize)) + 1; // 다음 페이지 범위의 가장 앞 페이지로 이동 하도록
 	var range = parseInt(range) + 1;
 	var url = "boardAdmin.le";
 		url = url + "?page=" + page;
@@ -73,12 +71,18 @@ function fn_next(page, range, rangeSize, searchType, keyword){
 			<option value="reg_id"<c:out value="${pagination.searchType eq 'reg_id' ? 'selected' : '' }"/>>작성자</option>
 		</select>
 		<input type="text" class="form-control mx-1 mt-2" name="keyword" id="keyword" placeholder="내용을 입력하세요.">
-		<button class="btn btn-primary mx-1 mt-2" name="btnSearch" id="btnSearch">검색</button>
+		<button class="btn btn-warning mx-1 mt-2" name="btnSearch" id="btnSearch">검색</button>
 		<a class="btn btn-primary mx-1 mt-2" href="boardWrite.le">글작성</a>
 	</div>
 	<!-- 게시글 목록  -->
 	<div class="form-group mt-4">
 		<div class="row">
+		<!-- 작성된 게시글이 존재하지 않는 경우, 아래의 문구 출력 -->
+		<c:if test="${list == null}">
+			<p> 작성된 글이 없습니다.</p>
+		</c:if>
+		<!-- 작성된 게시글이 존재하는 경우, table형식으로 게시글 출력  -->
+		<c:if test="${list != null}">
 			<table class="table" style="text-align:center; border:1px solid #dddddd">
 				<thead>
 					<tr>
@@ -90,40 +94,23 @@ function fn_next(page, range, rangeSize, searchType, keyword){
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="${list == null}">
-						<p> 작성된 글이 없습니다.</p>
-					</c:if>
-					<c:if test="${list != null}">
-						<c:forEach items="${list}" var="list">
-							<tr>
-								<td>${list.rownum}</td>
-								<td><a href="boardView.le?boardID=${list.boardID}" style="text-decoration:none;">${list.boardTitle}</a></td>
-								<td>${list.userID}</td>
-								<td>${list.hit}</td>
-								<td>${list.boardRegdate}</td>
-							</tr> 
-						</c:forEach>
-					</c:if>
+					<c:forEach items="${list}" var="list">
+						<tr>
+							<td>${list.rownum}</td>
+							<td><a href="boardView.le?boardID=${list.boardID}" style="text-decoration:none;">${list.boardTitle}</a></td>
+							<td>${list.userID}</td>
+							<td>${list.hit}</td>
+							<td>${list.boardRegdate}</td>
+						</tr> 
+					</c:forEach>
 				</tbody>
 			</table>
+			</c:if>
 		</div>
 	</div>
-	<!-- Pagination -->
-	<div id="paginationBox">
-		<ul class="pagination">
-			<c:if test="${pagination.prev}">
-				<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${search.searchType}','${search.keyword}')">이전</a></li>
-			</c:if>
-			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-				<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
-					<a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}','${search.searchType}','${search.keyword}')"> ${idx}</a>
-				</li>
-			</c:forEach>
-			<c:if test="${pagination.next}">
-				<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}','${search.searchType}','${search.keyword}')" >다음</a></li>
-			</c:if>
-		</ul>
-	</div>
+
+	<!-- 페이징처리 -->
+	<%@include file ="../common/pagination.jsp" %>
 </section>
 	
 <%@include file ="../common/footer.jsp" %>

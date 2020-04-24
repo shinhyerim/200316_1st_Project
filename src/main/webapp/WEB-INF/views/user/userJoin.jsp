@@ -8,7 +8,7 @@
 <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script type="text/javascript">
-// ID중복확인
+// 아이디 중복 여부 검사
 function idCheckFunction(){
 	var userID = $('#userID').val();
 	$.ajax({
@@ -18,7 +18,6 @@ function idCheckFunction(){
 		data: {userID : userID},
 		success: function(result){
 			console.log(result);
-			
 			if(result == 0){
 				$('#idCheckMessage').html('사용 가능한 아이디입니다.');
 			}else{
@@ -28,10 +27,11 @@ function idCheckFunction(){
 	})
 }
 
-// 비밀번호 확인
+// 비밀번호 일치 여부 검사
 function passwordCheckFunction(){
 	var p1 = $('#userPassword').val();		
 	var p2 = $('#userPassword2').val();
+	
 	if(p1 != p2){
 		$('#passwordCheckMessage').html('비밀번호가 서로 일치하지 않습니다.');
 	}else{
@@ -53,9 +53,11 @@ function passwordCheckFunction(){
 					<div class="text-center">
 						<h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
 					</div>
+					<!-- 회원가입폼 -->
 					<form method="post" action="userJoinAction.le" style="padding-bottom: 20px;">
 						<div class="form-group">
 			            	<label>아이디</label><input type="text" class="form-control form-control-user" name="userID" id="userID" onKeyUp="idCheckFunction();" placeholder="ID" required>
+			               	<!-- 아이디 중복 확인 결과 출력 영역 -->
 			               	<small style="color:red; text-align:left; font-weight:bold;" id="idCheckMessage"></small>
 			           	</div>
 			            <div class="form-group">
@@ -63,6 +65,7 @@ function passwordCheckFunction(){
 			            </div>
 			            <div class="form-group">
 			                <label>비밀번호 확인</label> <input type="password" id="userPassword2" name="userPassword2" class="form-control form-control-user" onKeyUp="passwordCheckFunction();" placeholder="Confirm Password" required>
+			                <!-- 비밀번호 일치 검사 결과 출력 영역 -->
 			                <small style="color:red; text-align:left; font-weight:bold;" id="passwordCheckMessage"></small>
 			            </div>
 			            <div class="form-group">

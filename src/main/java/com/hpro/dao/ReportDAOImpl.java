@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.hpro.commons.Pagination;
 import com.hpro.commons.Search;
 import com.hpro.dto.ReportDTO;
 

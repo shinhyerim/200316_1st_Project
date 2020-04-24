@@ -1,7 +1,6 @@
 package com.hpro.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -17,8 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hpro.dto.ReplyDTO;
 import com.hpro.service.BoardService;
 
+/* @RestController
+ - 스프링 4.x 버전부터 지원
+ - 컨트롤러 클래스에 @RestController어노테이션을 붙이면 메소드에 @ResponseBody어노테이션을 붙이지 않아도 문자열과 JSON 전송 가능
+ - 문자열, 객체 등을 리턴해주는 메소드를 가지고 있음 
+*/
+
 @RestController
 public class RestBoardController {
+
+	// 로그
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Inject

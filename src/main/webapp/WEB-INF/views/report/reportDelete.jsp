@@ -4,7 +4,7 @@
 
 <c:if test="${result == 1}">
 	<script>
-		alert("삭제 완료되었습니다.");
+		alert("삭제 완료되었습니다."); // 삭제 완료되었다는 알림창은 생성되었지만, 실제로 삭제된 것은 아님 (DB에 존재, 관리자 페이지에서 확인 가능)
 		location.href="reportUser.le";
 	</script>
 </c:if>

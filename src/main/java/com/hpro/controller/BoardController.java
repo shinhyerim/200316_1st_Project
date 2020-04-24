@@ -41,11 +41,10 @@ public class BoardController {
 			@RequestParam(required=false, defaultValue="1")int page,
 			@RequestParam(required=false, defaultValue="1")int range,
 			@RequestParam(required=false)String searchType,
-			@RequestParam(required=false)String keyword,
-			@ModelAttribute("search")Search search) throws Exception{
+			@RequestParam(required=false)String keyword) throws Exception{
 		
 		// 검색
-		model.addAttribute("search", search);
+		Search search = new Search();
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
 		
@@ -62,50 +61,70 @@ public class BoardController {
 
 	// 게시글 상세내용 조회
 	@RequestMapping(value="boardView.le", method=RequestMethod.GET)
-	public String view(int boardID, Model model, @ModelAttribute("search")Search search) throws Exception {
-		
-		// 게시글 상세 내용 불러오기
-		BoardDTO boardDTO = boardService.view(boardID);
+	public String view(int boardID, Model model, 
+			@RequestParam(required=false, defaultValue="1")int page,
+			@RequestParam(required=false, defaultValue="1")int range,
+			@RequestParam(required=false)String searchType,
+			@RequestParam(required=false)String keyword) throws Exception {
 		
 		// 조회 수 증가
 		boardService.hit(boardID);
-		
+				
+		// 게시글 상세 내용 불러오기
+		BoardDTO boardDTO = boardService.view(boardID);
 		model.addAttribute("boardDTO", boardDTO);
-		model.addAttribute("search", search);
 		
 		// 댓글 목록
 		List<ReplyDTO> replyList = boardService.replyList(boardID);
 		model.addAttribute("replyList", replyList);
 		
+		Search search = new Search(); 
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);;
+
+	    int listCnt = boardService.count(search);
+	    search.pageInfo(page, range, listCnt);
+	    
+		model.addAttribute("search", search);		
 		return "board/boardView";
 	}
 	
-	// 게시글 수정 및 처리
+	// 게시글 수정폼
 	@RequestMapping(value="boardUpdate.le", method=RequestMethod.GET)
 	public String boardUpdate(int boardID, Model model,@ModelAttribute("search")Search search) throws Exception{
+		
 		BoardDTO boardDTO = boardService.view(boardID);
+		
 		boardService.hit(boardID);
+		
 		model.addAttribute("boardDTO", boardDTO);
 		model.addAttribute("search", search);
+		
 		return "board/boardUpdate";
 	}
 	
+	// 게시글 수정 처리
 	@RequestMapping(value="boardUpdateAction.le", method=RequestMethod.POST)
 	public String update(@ModelAttribute BoardDTO boardDTO, Model model, @ModelAttribute("search")Search search) throws Exception{
+		
 		int result = boardService.update(boardDTO);
 		
 		model.addAttribute("boardDTO", boardDTO);
 		model.addAttribute("result", result);
 		model.addAttribute("search", search);
+		
 		return "board/boardUpdateAction";
 	}
 	
 	// 게시글 삭제
 	@RequestMapping(value="boardDelete.le", method=RequestMethod.GET)
 	public String delete(int boardID, Model model, @ModelAttribute("search")Search search) throws Exception{
+		
 		int result = boardService.delete(boardID);
+		
 		model.addAttribute("result", result);
 		model.addAttribute("search",search);
+		
 		return "board/boardDelete";
 	}
 	
@@ -122,11 +141,10 @@ public class BoardController {
 			@RequestParam(required=false, defaultValue="1")int page,
 			@RequestParam(required=false, defaultValue="1")int range,
 			@RequestParam(required=false, defaultValue="title")String searchType,
-			@RequestParam(required=false)String keyword,
-			@ModelAttribute("search")Search search) throws Exception{
+			@RequestParam(required=false)String keyword) throws Exception{
 		
 		// 검색
-		model.addAttribute("search", search);
+		Search search = new Search();
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
 		

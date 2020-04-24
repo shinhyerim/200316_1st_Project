@@ -40,7 +40,6 @@ function insertReplyFunction(){
 		}
 	});
 }
-
 //댓글 삭제
 function deleteReplyFunction(replyID){
 	var paramData = {"replyID":replyID};
@@ -71,14 +70,12 @@ function deleteReplyFunction(replyID){
 
 	<section class="container">
 		<form class="form-group mt-5">
-			<input type="hidden" id="boardID" name="boardID"
-				value="${boardDTO.boardID}"> <input type="hidden" id="page"
-				name="page" value="${search.page}"> <input type="hidden"
-				id="range" name="range" value="${search.range}"> <input
-				type="hidden" id="searchType" name="searchType"
-				value="${search.searchType}"> <input type="hidden"
-				id="keyword" name="keyword" value="${search.keyword}">
-
+			<!-- 게시글 번호 및 페이지, 검색 정보를 hidden으로 넘겨줌 -->
+			<input type="hidden" id="boardID" name="boardID" value="${boardDTO.boardID}"> 
+			<input type="hidden" id="page" name="page" value="${search.page}"> 
+			<input type="hidden" id="range" name="range" value="${search.range}"> 
+			<input type="hidden" id="searchType" name="searchType" value="${search.searchType}"> 
+			<input type="hidden" id="keyword" name="keyword" value="${search.keyword}">
 			<table class="table table-borded">
 				<tbody>
 					<tr>
@@ -103,29 +100,24 @@ function deleteReplyFunction(replyID){
 					</tr>
 				</tbody>
 			</table>
-
-			<c:if
-				test="${sessionScope.userInfo.userID != null && sessionScope.userInfo.userID eq boardDTO.userID}">
-				<a class="btn btn-warning"
-					href="boardUpdate.le?boardID=${boardDTO.boardID}&page=${search.page}&range=${search.range}&searchType=${search.searchType}&keyword=${search.keyword}"
-					style="text-decoration: none;">수정하기</a>
-				<a class="btn btn-danger" onclick="return confirm('정말로 삭제하시겠습니까?')"
-					href="boardDelete.le?boardID=${boardDTO.boardID}"
-					style="text-decoration: none;">삭제하기</a>
+			
+			<!-- 공유된 세션의 userID가 존재하고, userID와 게시글의 userID가 일치하는 경우 '수정','삭제'버튼 생성   -->
+			<c:if test="${sessionScope.userInfo.userID != null && sessionScope.userInfo.userID eq boardDTO.userID}">
+				<a class="btn btn-warning" href="boardUpdate.le?boardID=${boardDTO.boardID}&page=${search.page}&range=${search.range}&searchType=${search.searchType}&keyword=${search.keyword}" style="text-decoration: none;">수정하기</a>
+				<a class="btn btn-danger" onclick="return confirm('정말로 삭제하시겠습니까?')" href="boardDelete.le?boardID=${boardDTO.boardID}" style="text-decoration: none;">삭제하기</a>
 			</c:if>
-
+			
+			<!-- 일반 사용자(게시글 작성자 포함)에게 보여지는 게시글 목록 이동 버튼  -->
 			<c:if test="${sessionScope.userInfo.userID != 'admin'}">
-				<a class="btn btn-primary"
-					href="boardList.le?page=${search.page}&range=${search.range}&searchType=${search.searchType}&keyword=${search.keyword}"
+				<a class="btn btn-primary" href="boardList.le?page=${search.page}&range=${search.range}&searchType=${search.searchType}&keyword=${search.keyword}"
 					style="text-decoraiton: none;">목록으로</a>
 			</c:if>
 
+			<!-- 관리자의 경우 게시물 삭제가 가능하며, 관리자 페이지의 게시글 목록으로 이동하는 버튼 생성  -->
 			<c:if test="${sessionScope.userInfo.userID eq 'admin'}">
 				<a class="btn btn-danger" onclick="return confirm('정말로 삭제하시겠습니까?')"
-					href="boardDelete.le?boardID=${boardDTO.boardID}"
-					style="text-decoration: none;">삭제하기</a>
-				<a class="btn btn-primary" href="boardAdmin.le"
-					style="text-decoration: none;">목록으로</a>
+					href="boardDelete.le?boardID=${boardDTO.boardID}" style="text-decoration: none;">삭제하기</a>
+				<a class="btn btn-primary" href="boardAdmin.le" style="text-decoration: none;">목록으로</a>
 			</c:if>
 		</form>
 
@@ -135,6 +127,7 @@ function deleteReplyFunction(replyID){
 		<c:if test="${sessionScope.userInfo != null}">
 			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 				<form name="replyForm" id="replyForm" role="form" method="post">
+					<!-- 게시글 번호, 페이지 및 검색 정보 hidden으로 넘겨줌  -->
 					<input type="hidden" id="boardID" name="boardID" value="${boardDTO.boardID}"/> 
 					<input type="hidden" id="page" name="page" value="${search.page}" /> 
 					<input type="hidden" id="range" name="range" value="${search.range}" /> 
@@ -152,15 +145,17 @@ function deleteReplyFunction(replyID){
 				</form>
 			</div>
 		</c:if>
-	<!-- 댓글 목록 -->
-	<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
-		<h6 class="border-bottom pb-2 mb-3">댓글 목록</h6>
+		<!-- 댓글 목록 -->
+		<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
+			<h6 class="border-bottom pb-2 mb-3">댓글 목록</h6>
 			<div id="replyList">
+				<!-- 댓글 목록이 있을 경우에만 출력  -->
 				<c:forEach items="${replyList}" var="replyList">
 					<li style="list-style:none;">
 						<p id="replyInfo">
 							<b>${replyList.userID}</b>&nbsp;
 							<small><fmt:formatDate value="${replyList.replyRegdate}" pattern="yyyy-MM-dd"/></small>&nbsp;&nbsp;
+							<!-- 공유된 세션의 userID와 댓글 작성자 userID가 일치하는 경우 '삭제'가능  -->
 							<c:if test="${sessionScope.userInfo.userID eq replyList.userID}">
 								<small><a onClick="deleteReplyFunction(${replyList.replyID});" style="text-decoraion:none; color:blue;">삭제</a></small>
 							</c:if>

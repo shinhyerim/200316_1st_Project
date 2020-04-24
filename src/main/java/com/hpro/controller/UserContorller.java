@@ -1,8 +1,6 @@
 package com.hpro.controller;
 
-
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -22,12 +20,6 @@ public class UserContorller {
 	@Inject
 	private UserService userService;
 
-	// 메인 이동
-	/*@RequestMapping(value="home.le")
-	public String home() {
-		return "home";
-	}*/
-	
 	// 회원가입 폼
 	@RequestMapping(value="userJoin.le")
 	public String userJoin() {
@@ -84,7 +76,8 @@ public class UserContorller {
 		return "user/userLogin";
 	}
 	
-	// ID 중복확인 - Ajax로 구현
+	// 아이디 중복 확인 검사
+	// Ajax 사용 시 @ResponseBody
 	@ResponseBody
 	@RequestMapping(value="idcheck.le", method=RequestMethod.POST)
 	public int idcheck(String userID) throws Exception {

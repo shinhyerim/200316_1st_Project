@@ -15,13 +15,16 @@
 			<div class="card-body p-0">
 				<!-- Nested Row within Card Body -->
 				<div class="row" style="width:964px;">
+					<!-- 이미지 출력  -->
 					<div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+					<!-- 아이디, 이메일 입력폼 관련 영역 -->
 					<div class="col-lg-6">
                 	<div class="p-5">
 	                  	<div class="text-center">
 	                    	<h3 class="h4 text-gray-900 mb-2">비밀번호 찾기</h3>
 	                    	<p>아이디와 이메일을 입력해주세요</p>
 	                  	</div>
+	                  	<!-- 아이디, 이메일 입력폼 -->
 	                  	<form class="user" method="post" action="passwordFindAction.le">
 	                    	<div class="form-group">
 								<input type="text" class="form-control form-control-user" id="userID" name="userID" placeholder="ID" required>

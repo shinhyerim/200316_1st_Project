@@ -11,21 +11,30 @@
 </head>
 <body>
 <%
-	String[] yearList={"2011","2012","2013","2014","2015","2016","2017","2018","2019","2020"};
-	String[] semesterList={"1학기","여름학기","2학기","겨울학기"};
-	String[] lectureList={"전공","교양","기타"};
-	String[] scoreList={"A","B","C","D","F"};
-	
-	pageContext.setAttribute("yearList",yearList);
-	pageContext.setAttribute("semesterList",semesterList);
-	pageContext.setAttribute("lectureList",lectureList);
-	pageContext.setAttribute("scoreList",scoreList);
+	// 연도 목록 
+	String[] yearList = { "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" };
+
+	// 학기 목록
+	String[] semesterList = { "1학기", "여름학기", "2학기", "겨울학기" };
+
+	// 구분 목록
+	String[] lectureList = { "전공", "교양", "기타" };
+
+	// 점수 목록
+	String[] scoreList = { "A", "B", "C", "D", "F" };
+
+	// 해당 페이지에서만 공유되도록 pageContext 사용
+	pageContext.setAttribute("yearList", yearList);
+	pageContext.setAttribute("semesterList", semesterList);
+	pageContext.setAttribute("lectureList", lectureList);
+	pageContext.setAttribute("scoreList", scoreList);
 %>
 
 <%@include file ="../common/header.jsp" %>
 	
 <section class="container">
 	<form class="form-group mt-5" action="updateAction.le" method="post">
+		<!-- 수정 후에도 페이지,검색 내용 유지를 위해 hidden으로 관련 값들을 넘겨줌  -->
 		<input type="hidden" name="evaluationID" value="${evalUpdateContent.evaluationID}">
 		<input type="hidden" id="page" name="page" value="${search.page}">
 		<input type="hidden" id="range" name="range" value="${search.range}">
@@ -37,11 +46,11 @@
 		</div>
 		<div class="form-group">
 			<label>강의명</label>
-			<input type="text" name="lectureName" class="form-control" maxlength="20" value="${evalUpdateContent.lectureName}">
+			<input type="text" name="lectureName" class="form-control" maxlength="20" required value="${evalUpdateContent.lectureName}">
 		</div>
 		<div class="form-group">
 			<label>교수명</label>
-			<input type="text" name="professorName" class="form-control" maxlength="20" value="${evalUpdateContent.professorName}">
+			<input type="text" name="professorName" class="form-control" maxlength="20" required value="${evalUpdateContent.professorName}">
 		</div>
 		<div class="form-row">
 			<div class="form-group col-sm-4">
@@ -71,11 +80,11 @@
 		</div>
 		<div class="form-group">
 			<label>제목</label>
-			<input type="text" name="evaluationTitle" class="form-control" maxlength="30" value="${evalUpdateContent.evaluationTitle}">
+			<input type="text" name="evaluationTitle" class="form-control" maxlength="30" required value="${evalUpdateContent.evaluationTitle}">
 		</div>
 		<div class="form-group">
 			<label>내용</label>
-			<textarea name="evaluationContent" class="form-control" maxlength="2048" style="height:180px;">${evalUpdateContent.evaluationContent}</textarea>
+			<textarea name="evaluationContent" class="form-control" maxlength="2048" style="height:180px;" required>${evalUpdateContent.evaluationContent}</textarea>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-sm-3">

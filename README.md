@@ -11,7 +11,8 @@
 
 #### 개발 환경
 - JavaScript·JQuery·Ajax
-- JAVA·JSP·MySQL
+- JAVA·JSP
+- MySQL
 - Spring Framework·MyBatis·Bootstrap
 
 ##### =============================================== 

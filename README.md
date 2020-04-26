@@ -18,5 +18,11 @@
 - Language : JAVA · JSP · JavaScript(JQuery · Ajax)
 - Framework : Spring Framework · MyBatis · Bootstrap
 
+### :open_file_folder: ERD
 
 
+
+### :pushpin: 기능 서술
+
+1. 검색 기능
+```

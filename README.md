@@ -25,8 +25,8 @@
 ### :pushpin: 기능 서술
 
 1. 강의평가 목록 출력 SQL문
-- 강의평가 검색 기능 추가로 <if> ~ </if> 추가
-- 이미 where절이 있으므로 <if>를 사용
+- 강의평가 검색 기능 추가로 MyBatis의 동적SQL인 if 사용
+- 이미 where절이 있으므로 if를 사용
 ```sql
 <select id="list" resultType="evaluationDTO">
 	SELECT * FROM lectureevaluation
@@ -46,8 +46,8 @@
 
 2. 게시판 목록 출력 SQL문
 - 게시글의 번호를 매기기 위해서 @ROWNUM 사용
-- 게시글 검색 기능을 추가하면서 <trim> ~ </trim> 추가
-- where 절을 무조건적으로 생성하지 않기 때문에 <where> 대신 <trim>을 사용
+- 게시글 검색 기능을 추가하면서 MyBatis의 동적SQL인 trim, if 사용
+- where 절을 무조건적으로 생성하지 않기 때문에 where 대신 trim을 사용
 ```sql
 <select id="list" resultType="boardDTO">
 	SELECT * FROM(

@@ -18,7 +18,7 @@ function insertReplyFunction(){
 	var userID = $('#userID').val();
 	// JSON.stringify() : JSON객체를 JSON형태의 문자열로 변환해줌
 	// JSON.parse() : JSON형태의 문자열을 JSON객체로 변환해줌
-	var paramData = JSON.stringify({"replyContext" : replyContext, "userID" : userID, "boardID" : ${boardDTO.boardID}});
+	var paramData = JSON.stringify({"replyContext" : replyContext, "userID" : userID, "boardID" : ${boardDTO.boardID} });
 	var headers = {"Content-Type" : "application/json", "X-HTTP-Method-Override" : "POST"};
 	
 	$.ajax({
@@ -31,9 +31,6 @@ function insertReplyFunction(){
 			console.log("댓글 작성 성공:"+result);
 			alert("댓글 작성 성공");
 			location.href="boardView.le?boardID="+${boardDTO.boardID};
-			
-			$('#replyContext').val();
-			$('#userID').val();
 		},
 		error: function(error){
 			console.log("에러 : "+error);

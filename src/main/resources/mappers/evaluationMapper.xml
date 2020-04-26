@@ -29,7 +29,7 @@
 		update lectureevaluation set evaluationStatus=2 where evaluationID=#{evaluationID}
 	</update>
 
-	<!-- 강의평가 목록 (사용자): 검색을 위해 MyBatis의 동적SQL인 <trim>,<if> 사용 -->
+	<!-- 강의평가 목록 (사용자): 검색을 위해 MyBatis의 동적SQL인 <if> 사용 -->
 	<select id="list" resultType="evaluationDTO">
 		SELECT * FROM lectureevaluation
     	WHERE evaluationStatus = 1
@@ -80,21 +80,24 @@
     		SELECT @ROWNUM := @ROWNUM + 1 AS rownum, l.*
     		FROM lectureevaluation l, (SELECT @ROWNUM := 0) TMP
     		ORDER BY evaluationID DESC) SUB
-		<if test="searchType != null">
-			<if test="searchType=='title'">
-				WHERE EVALUATIONTITLE like CONCAT('%', #{keyword}, '%')
+    	<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType != null">
+				<if test="searchType=='title'">
+					AND evaluationTitle like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='content'">
+					AND evaluationContent like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='reg_id'">
+					AND userID like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='lectureName'">
+					AND lectureName like CONCAT('%', #{keyword}, '%')
+				</if>
 			</if>
-			<if test="searchType=='content'">
-				WHERE EVALUATIONCONTENT like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='reg_id'">
-				WHERE USERID like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='lectureName'">
-				WHERE LECTURENAME like CONCAT('%', #{keyword}, '%')
-			</if>
-		</if>
-    	ORDER BY SUB.ROWNUM DESC LIMIT #{startList}, #{listSize}
+		</trim>
+    	ORDER BY SUB.ROWNUM DESC 
+    	LIMIT #{startList}, #{listSize}
 	</select>
 	
 	<!-- 강의평가 내용보기 (관리자) -->	

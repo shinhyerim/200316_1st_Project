@@ -190,8 +190,12 @@
 	        		<p style="text-align:center;">Oracle</p>
 	        	</li>
 	        	<li class="list-inline-item mt-3" style="padding-right:2rem;">
+	        		<img src="resources/img/server.png">
+	        		<p style="text-align:center;">MariaDB</p>
+	        	</li>
+	        	<li class="list-inline-item mt-3" style="padding-right:2rem;">
 	        		<img src="resources/img/framework.png">
-	        		<p style="text-align:center;">Spring Framework</p>
+	        		<p style="text-align:center;">Spring</p>
 	        	</li>
 	        	<li class="list-inline-item mt-3" style="padding-right:2rem;">
 	        		<img src="resources/img/code.png">

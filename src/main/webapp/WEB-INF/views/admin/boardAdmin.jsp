@@ -66,6 +66,7 @@ function fn_next(page, range, rangeSize, searchType, keyword){
 	<!-- 검색창 -->
 	<div class="form-inline mt-3">
 		<select class="form-control mx-1 mt-2" name="searchType" id="searchType">
+			<option value=""<c:out value="${pagination.searchType == null ? 'selected' : '' }"/>>전체</option>
 			<option value="title"<c:out value="${pagination.searchType eq 'title' ? 'selected' : '' }"/>>제목</option>
 			<option value="content"<c:out value="${pagination.searchType eq 'content' ? 'selected' : '' }"/>>내용</option>
 			<option value="reg_id"<c:out value="${pagination.searchType eq 'reg_id' ? 'selected' : '' }"/>>작성자</option>

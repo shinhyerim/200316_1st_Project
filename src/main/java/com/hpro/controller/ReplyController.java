@@ -23,7 +23,7 @@ import com.hpro.service.BoardService;
 */
 
 @RestController
-public class RestBoardController {
+public class ReplyController {
 
 	// 로그
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
@@ -39,19 +39,6 @@ public class RestBoardController {
 			boardService.insertReply(replyDTO);
 			result.put("status", "OK");
 		} catch (Exception e) {
-			e.printStackTrace();
-			result.put("status", "False");
-		}
-		return result;
-	}
-	
-	// 댓글 수정
-	@RequestMapping(value="updateReply.le", method=RequestMethod.POST)
-	public Map<String,Object>  updateReply(@RequestBody ReplyDTO replyDTO) throws Exception {
-		Map<String,Object> result = new HashMap<>();
-		try {
-			boardService.updateReply(replyDTO);
-		}catch(Exception e) {
 			e.printStackTrace();
 			result.put("status", "False");
 		}

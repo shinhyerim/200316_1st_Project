@@ -22,13 +22,13 @@
 			FROM board b, (SELECT @ROWNUM := 0) TMP
 			ORDER BY boardRegdate desc) SUB
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="searchType=='title' and keyword != null and keyword != '' ">
+			<if test="searchType=='title'">
 				AND BOARDTITLE like CONCAT('%', #{keyword}, '%')
 			</if>
-			<if test="searchType=='content' and keyword != null and keyword != '' ">
+			<if test="searchType=='content' ">
 				AND BOARDCONTENT like CONCAT('%', #{keyword}, '%')
 			</if>
-			<if test="searchType=='reg_id' and keyword != null and keyword != '' ">
+			<if test="searchType=='reg_id'">
 				AND USERID like CONCAT('%', #{keyword}, '%')
 			</if>	
 		</trim>

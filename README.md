@@ -28,20 +28,20 @@
 - 강의평가 검색 기능 추가로 <if> ~ </if> 추가
 - 이미 where절이 있으므로 <if>를 사용
 ```sql
-	<select id="list" resultType="evaluationDTO">
-		SELECT * FROM lectureevaluation
+<select id="list" resultType="evaluationDTO">
+	SELECT * FROM lectureevaluation
     	WHERE evaluationStatus = 1
     	<if test="searchType != null">
-			<if test="searchType == 'lectureName'">
-				AND lectureName LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'professorName'">
-				AND professorName LIKE CONCAT('%', #{keyword}, '%')
-			</if>
+		<if test="searchType == 'lectureName'">
+			AND lectureName LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="searchType == 'professorName'">
+			AND professorName LIKE CONCAT('%', #{keyword}, '%')
+		</if>
 		</if>
     	ORDER BY evaluationRegdate desc
     	Limit #{startList}, #{listSize}
-	</select>
+</select>
 ```
 
 2. 게시판 목록 출력 SQL문
@@ -50,24 +50,24 @@
 - where 절을 무조건적으로 생성하지 않기 때문에 <where> 대신 <trim>을 사용
 ```sql
 <select id="list" resultType="boardDTO">
-		SELECT * FROM(
-			SELECT @ROWNUM := @ROWNUM + 1 AS rownum, b.*
-			FROM board b, (SELECT @ROWNUM := 0) TMP
-			ORDER BY boardRegdate desc) SUB
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="searchType=='title'">
-				AND boardTitle LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='content' ">
-				AND boardContent LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='reg_id'">
-				AND userID LIKE CONCAT('%', #{keyword}, '%')
-			</if>	
-		</trim>
-		ORDER BY SUB.ROWNUM ASC 
-    LIMIT #{startList}, #{listSize}
-	</select>
+	SELECT * FROM(
+		SELECT @ROWNUM := @ROWNUM + 1 AS rownum, b.*
+		FROM board b, (SELECT @ROWNUM := 0) TMP
+		ORDER BY boardRegdate desc) SUB
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="searchType=='title'">
+			AND boardTitle LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="searchType=='content' ">
+			AND boardContent LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="searchType=='reg_id'">
+			AND userID LIKE CONCAT('%', #{keyword}, '%')
+		</if>	
+	</trim>
+	ORDER BY SUB.ROWNUM ASC 
+    	LIMIT #{startList}, #{listSize}
+</select>
 ```
 3. 신고내역 처리 - 관리자
 - 소스 위치 : src/main/webapp/WEB_INF/views/admin/reportView

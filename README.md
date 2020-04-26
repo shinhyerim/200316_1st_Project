@@ -333,7 +333,7 @@ function deleteReplyFunction(replyID){
 * * *
 
 ##### 참고한 사이트
-https://www.youtube.com/playlist?list=PLRx0vPvlEmdAdWCQeUPnyMZ4PsW3dGuFB
-https://freehoon.tistory.com/115?category=735500
-https://startbootstrap.com/themes/sb-admin-2/
-https://startbootstrap.com/themes/resume/
+- 프로젝트 주제 : https://www.youtube.com/playlist?list=PLRx0vPvlEmdAdWCQeUPnyMZ4PsW3dGuFB
+- 게시판 댓글 : https://freehoon.tistory.com/115?category=735500
+- Bootstrap Template : https://startbootstrap.com/themes/sb-admin-2/
+- Bootstrap Template : https://startbootstrap.com/themes/resume/

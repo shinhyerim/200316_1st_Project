@@ -8,5 +8,9 @@
 #### 개발 환경
 - Server : Apache Tomcat 9.0
 - Tool : STS · MySQL 5.7 Command Line Client
-- Language : JAVA · JSP · JavaScript
+- Language : JAVA · JSP · JavaScript(JQuery · Ajax)
 - Framework : Spring Framework · MyBatis · Bootstrap
+
+
+###### 프로젝트 주제는 동빈나님의 JSP 강의평가 사이트 만들기를 참고하였습니다.
+###### index의 template은 StartBootstrap의 Resum입니다.

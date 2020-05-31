@@ -7,7 +7,7 @@
 ## :paperclip: 프로젝트 구성
 
 - 본인에 대한 간단한 소개
-- 강의평가 사이트(PORFOLIO에서 링크로 연결)
+- 강의평가 사이트(PORTFOLIO에서 링크로 연결)
 
 * * *
 
@@ -110,7 +110,6 @@ function idCheckFunction(){
 
 4. 비밀번호 일치 여부 검사
 - 소스 위치 : src/main/webapp/WEB_INF/views/user/userJoin
-- 페이지 리로드 없이 처리하기 위해 Ajax 사용
 ```javscript
 function passwordCheckFunction(){
 	var p1 = $('#userPassword').val();		

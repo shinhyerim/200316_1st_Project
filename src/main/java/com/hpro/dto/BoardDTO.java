@@ -2,6 +2,8 @@ package com.hpro.dto;
 
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardDTO {
 	private int boardID;
 	private String userID;
@@ -9,7 +11,11 @@ public class BoardDTO {
 	private String boardContent;
 	private Timestamp boardRegdate;
 	private int hit;
-	private int rownum;
+	
+	private int rownum; // 게시판 글목록 처리 시 필요
+	private int replyCnt; // 댓글 개수
+	
+	private MultipartFile boardFile; // 파일 업로드 처리
 	
 	public int getBoardID() {
 		return boardID;
@@ -54,4 +60,17 @@ public class BoardDTO {
 	public void setRownum(int rownum) {
 		this.rownum = rownum;
 	}
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+	public MultipartFile getBoardFile() {
+		return boardFile;
+	}
+	public void setBoardFile(MultipartFile boardFile) {
+		this.boardFile = boardFile;
+	}
+
 }

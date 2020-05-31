@@ -1,15 +1,14 @@
 package com.hpro.service;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 
 import com.hpro.commons.Search;
 import com.hpro.dao.BoardDAO;
 import com.hpro.dto.BoardDTO;
 import com.hpro.dto.ReplyDTO;
+
 @Service
 public class BoardServiceImpl implements BoardService {
 
@@ -17,7 +16,6 @@ public class BoardServiceImpl implements BoardService {
 	BoardDAO boardDAO;
 	
 	// 게시글 처리
-	
 	@Override
 	public int write(BoardDTO boardDTO) throws Exception {
 		return boardDAO.write(boardDTO);

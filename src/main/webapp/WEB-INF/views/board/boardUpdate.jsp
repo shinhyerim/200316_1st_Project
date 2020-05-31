@@ -39,6 +39,10 @@
 						<td>글 내용</td>
 						<td><textarea class="form-control" name="boardContent" maxlength="2048" required>${boardDTO.boardContent}</textarea></td>
 					</tr>
+					<tr>
+						<td>첨부파일</td>
+						<td><input type="file" name="boardFile"></td>
+					</tr>
 				</tbody>
 		</table>
 		<button type="submit" class="btn btn-primary pull-right">수정</button>

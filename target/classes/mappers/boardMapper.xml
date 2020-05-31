@@ -6,8 +6,8 @@
 
 	<!-- 게시판 글 작성 -->
 	<insert id="write" parameterType="boardDTO">
-		insert into board(userID,boardTitle,boardContent,boardRegdate,hit) 
-		values(#{userID},#{boardTitle},#{boardContent},now(),0)
+		insert into board(userID,boardTitle,boardContent,boardRegdate,hit,boardFile) 
+		values(#{userID},#{boardTitle},#{boardContent},now(),0,#{boardFile})
 	</insert>
 
 	<!-- 게시글 상세 내용 -->

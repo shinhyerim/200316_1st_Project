@@ -14,7 +14,7 @@
 	<!-- MyBatis & MySQL 연동하기  -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/hyerimproject?useSSL=false&amp;serverTimezone=UTC"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/hyerimProject?useSSL=false&amp;serverTimezone=UTC"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="1234"></property>
 	</bean>

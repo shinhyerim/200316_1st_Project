@@ -79,7 +79,7 @@ function fn_next(page, range, rangeSize, searchType, keyword){
 		<input type="text" class="form-control mx-1 mt-2" name="keyword" id="keyword" placeholder="내용을 입력하세요." value="${pagination.keyword}">
 		<button class="btn btn-primary mx-1 mt-2" name="btnSearch" id="btnSearch">검색</button>
 		<c:if test="${sessionScope.userInfo != null }">
-			<a class="btn btn-primary mx-1 mt-2" href="boardWrite.le">글작성</a>
+			<a class="btn btn-warning mx-1 mt-2" href="boardWrite.le">글작성</a>
 		</c:if>	
 	</div>
 	<!-- 게시글 목록  -->

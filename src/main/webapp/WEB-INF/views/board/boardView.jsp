@@ -17,7 +17,6 @@ function insertReplyFunction(){
 	var replyContext = $('#replyContext').val();
 	var userID = $('#userID').val();
 	// JSON.stringify() : JSON객체를 JSON형태의 문자열로 변환해줌
-	// JSON.parse() : JSON형태의 문자열을 JSON객체로 변환해줌
 	var paramData = JSON.stringify({"replyContext" : replyContext, "userID" : userID, "boardID" : ${boardDTO.boardID} });
 	var headers = {"Content-Type" : "application/json", "X-HTTP-Method-Override" : "POST"};
 	
@@ -37,7 +36,13 @@ function insertReplyFunction(){
 		}
 	});
 }
-//댓글 삭제
+
+// 댓글 수정
+function updateReplyFunction(){
+	window.open();
+}
+
+// 댓글 삭제
 function deleteReplyFunction(replyID){
 	var paramData = {"replyID":replyID};
 	
@@ -94,6 +99,10 @@ function deleteReplyFunction(replyID){
 					<tr>
 						<td>작성일자</td>
 						<td>${boardDTO.boardRegdate}</td>
+					</tr>
+					<tr>
+						<td>첨부파일</td>
+						<td>${boardDTO.boardFile}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -154,6 +163,7 @@ function deleteReplyFunction(replyID){
 							<small><fmt:formatDate value="${replyList.replyRegdate}" pattern="yyyy-MM-dd"/></small>&nbsp;&nbsp;
 							<!-- 공유된 세션의 userID와 댓글 작성자 userID가 일치하는 경우 '삭제'가능  -->
 							<c:if test="${sessionScope.userInfo.userID eq replyList.userID}">
+								<small><a onClick="updateReplyFunction();" style="text-decoraion:none; color:blue;">수정</a></small>
 								<small><a onClick="deleteReplyFunction(${replyList.replyID});" style="text-decoraion:none; color:blue;">삭제</a></small>
 							</c:if>
 						</p>

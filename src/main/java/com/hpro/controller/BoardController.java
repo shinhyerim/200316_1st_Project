@@ -1,5 +1,7 @@
 package com.hpro.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hpro.commons.Search;
 import com.hpro.dto.BoardDTO;
@@ -30,6 +33,14 @@ public class BoardController {
 	
 	@RequestMapping(value="boardWriteAction.le", method=RequestMethod.POST)
 	public String write(@ModelAttribute BoardDTO boardDTO, Model model) throws Exception {
+		
+		// 파일 업로드 처리
+		MultipartFile uploadFile = boardDTO.getBoardFile(); // boardDTO에 저장된 boardFile 가져오기
+		if(!uploadFile.isEmpty()) { // 업로드한 파일이 존재하면
+			String fileName = uploadFile.getOriginalFilename(); // 업로드한 파일명을 문자열로 리턴
+			uploadFile.transferTo(new File("C:/Users/hyeri/Desktop/img/"+fileName)); // 업로드한 파일을 지정된 경로에 fileName과 함께 저장
+		}
+
 		int result = boardService.write(boardDTO);
 		model.addAttribute("result", result);
 		return "board/boardWriteAction";
